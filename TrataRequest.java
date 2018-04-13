@@ -1,9 +1,7 @@
-
 import java.net.*;
 import java.io.*;
 import java.util.*;
 
-import sun.applet.Main;
 
 public class TrataRequest extends Thread {
 
@@ -18,27 +16,31 @@ public class TrataRequest extends Thread {
 	}
 	
 	public void run(){
-		
-		String linha = entrada.nextLine();
-		if(linha!=null&&!linha.isEmpty()) {
-
-			String[] fields = linha.split(";");
-			String user = fields[0];
-			String msg = fields[1];
-			System.out.println("mensagem recebida de: "+user);
-			
-			saida.println("@"+user+": "+msg);
-			saida.flush();
-			if(linha.contains("meteope"))
-				try {
-					this.socket.close();
-					Servidor.run = false;
-				} catch (IOException e) {
-					e.printStackTrace();
+		try {
+			do {
+				String linha = entrada.nextLine();
+				if(linha!=null&&!linha.isEmpty()) {
+					String[] fields = linha.split(";");
+					String user = fields[0];
+					String msg = fields[1];
+					System.out.println("mensagem recebida de: "+user);
+					
+					saida.println("@"+user+": "+msg);
+					saida.flush();
+					/*
+					if(linha.contains("meteope"))
+						try {
+							this.socket.close();
+							Servidor.run = false;
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						*/
 				}
-		}	
-	}			
+			}while(Servidor.run);//connected client list
+		} catch (NoSuchElementException e) {
+			//logoff user
+			e.printStackTrace();
+		}
+	}
 }
-
-	
-

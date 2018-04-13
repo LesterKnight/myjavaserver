@@ -17,8 +17,7 @@ public class Servidor {
 				
 				System.out.println("Conexao estabelecida...");
 				System.out.println("Iniciando thread para tratar requisicao...");
-				TrataRequest request = new TrataRequest(cliente);
-				request.start();
+				new TrataRequest(cliente).start();
 			}
 		
 		} catch (IOException e) {/*donothing*/}
