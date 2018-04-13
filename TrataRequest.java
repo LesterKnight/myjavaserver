@@ -1,8 +1,9 @@
-package servidor;
 
 import java.net.*;
 import java.io.*;
 import java.util.*;
+
+import sun.applet.Main;
 
 public class TrataRequest extends Thread {
 
@@ -19,59 +20,25 @@ public class TrataRequest extends Thread {
 	public void run(){
 		
 		String linha = entrada.nextLine();
-		
-		System.out.println("Requisicao Recebida: " + linha);
-		
-		if (linha.contains("LISTAARQUIVOS")){
-			this.listaArquivos(linha.replace("LISTAARQUIVOS ", ""));
-		} else if (linha.contains("GETFREESPACE")){
-			this.retornaEspacoLivre();
-		} else {
-			saida.println("Comando Invalido");
-			saida.flush();
-		}
-		
-		System.out.println("Encerrando conexao: " + linha);
-		try {
-			this.socket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-			
-	}
+		if(linha!=null&&!linha.isEmpty()) {
 
-	private void listaArquivos(String strPath){
-		
-		File path = new File(strPath);
-		if (!path.exists()){
-			saida.println("Diretorio Inexistente");
+			String[] fields = linha.split(";");
+			String user = fields[0];
+			String msg = fields[1];
+			System.out.println("mensagem recebida de: "+user);
+			
+			saida.println("@"+user+": "+msg);
 			saida.flush();
-			return;
-		}
-		
-		if (!path.isDirectory()){
-			saida.println("Caminho nao eh um diretorio");
-			saida.flush();
-			return;
-		}
-		
-		String[] arquivos = path.list();
-		if (arquivos.length == 0){
-			saida.println("Diretorio nao possui arquivos");
-			saida.flush();
-			return;
-		}
-		
-		for(String arquivo : arquivos){
-			saida.println(arquivo);
-		}
-		saida.flush();
-	}
-	
-	public void retornaEspacoLivre(){
-		File arquivo = new File("/");
-		saida.println(arquivo.getFreeSpace());
-		saida.flush();
-	}
-	
+			if(linha.contains("meteope"))
+				try {
+					this.socket.close();
+					Servidor.run = false;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}	
+	}			
 }
+
+	
+
