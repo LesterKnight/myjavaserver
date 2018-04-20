@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 public class Servidor {
 	public static boolean run = true;
@@ -8,6 +9,7 @@ public class Servidor {
 		
 		ServerSocket server = null;
 		int porta = 3333;
+		public static ArrayList<PrintWriter> lista = new ArrayList<PrintWriter>();
 		try {
 			System.out.println("Iniciando servidor na porta " + porta);
 			server = new ServerSocket(porta);

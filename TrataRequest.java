@@ -13,6 +13,7 @@ public class TrataRequest extends Thread {
 		this.socket = socket;
 		this.entrada = new Scanner(this.socket.getInputStream());
 		this.saida = new PrintWriter(this.socket.getOutputStream());
+		
 	}
 	
 	public void run(){
@@ -24,8 +25,11 @@ public class TrataRequest extends Thread {
 					String user = fields[0];
 					String msg = fields[1];
 					System.out.println("mensagem deve ser exibida aqui");
+					/*
 					saida.println("uma mensagem foi recebida pelo servidor");
 					saida.flush();
+					*/
+					Servidor.lista.add(saida);
 				}
 			}while(Servidor.run);//connected client list
 		} catch (NoSuchElementException e) {
