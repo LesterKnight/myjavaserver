@@ -23,7 +23,7 @@ public class TrataRequest extends Thread {
 					String[] fields = linha.split(";");
 					String user = fields[0];
 					String msg = fields[1];
-					System.out.println("mensagem recebida de: "+user);
+					System.out.println("mensagem recebida de: "+user+ " tentando enviar mensagem para todos os clientes");
 					saida.println("uma mensagem foi recebida pelo servidor");
 					saida.flush();
 				}
