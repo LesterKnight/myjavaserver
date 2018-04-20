@@ -23,7 +23,9 @@ public class TrataRequest extends Thread {
 					String[] fields = linha.split(";");
 					String user = fields[0];
 					String msg = fields[1];
-					System.out.println("mensagem recebida de: "+user);				
+					System.out.println("mensagem recebida de: "+user);
+					saida.println("uma mensagem foi recebida pelo servidor");
+					saida.flush();
 				}
 			}while(Servidor.run);//connected client list
 		} catch (NoSuchElementException e) {
