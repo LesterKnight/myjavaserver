@@ -14,9 +14,7 @@ public class Servidor {
 
 			while(run){
 				Socket cliente = server.accept();
-				
 				System.out.println("Conexao estabelecida...");
-				System.out.println("Iniciando thread para tratar requisicao...");
 				new TrataRequest(cliente).start();
 			}
 		

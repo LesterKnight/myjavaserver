@@ -23,19 +23,7 @@ public class TrataRequest extends Thread {
 					String[] fields = linha.split(";");
 					String user = fields[0];
 					String msg = fields[1];
-					System.out.println("mensagem recebida de: "+user);
-					
-					saida.println("@"+user+": "+msg);
-					saida.flush();
-					/*
-					if(linha.contains("meteope"))
-						try {
-							this.socket.close();
-							Servidor.run = false;
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						*/
+					System.out.println("mensagem recebida de: "+user);				
 				}
 			}while(Servidor.run);//connected client list
 		} catch (NoSuchElementException e) {
