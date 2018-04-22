@@ -13,7 +13,7 @@ public class TrataRequest extends Thread {
 		this.socket = socket;
 		this.entrada = new Scanner(this.socket.getInputStream());
 		this.saida = new PrintWriter(this.socket.getOutputStream());
-		Servidor.lista.add(this.saida);
+		
 		
 	}
 	
@@ -27,9 +27,15 @@ public class TrataRequest extends Thread {
 					String msg = fields[1];
 					System.out.println("mensagem deve ser exibida aqui");
 
-					Servidor.lista.forEach(saidaDaLista->{
-						saida.println("uma mensagem foi recebida pelo servidor");
-						saida.flush();	
+					Servidor.listaClientes.forEach(saidaDaLista->{
+						PrintWriter saidaExtraidaDaLista = null;
+						try {
+							saidaExtraidaDaLista = new PrintWriter(saidaDaLista.getOutputStream());
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						saidaExtraidaDaLista.println("mensagem enviada a todos os clientes");
 					});
 				}
 			}while(Servidor.run);//connected client list

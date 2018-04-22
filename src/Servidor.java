@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Servidor {
 	public static boolean run = true;
-	public static ArrayList<PrintWriter> lista = new ArrayList<PrintWriter>();
+	public static ArrayList<Socket> listaClientes = new ArrayList<Socket>();
 	public static void main(String[] args){
 		
 		ServerSocket server = null;
@@ -17,6 +17,7 @@ public class Servidor {
 
 			while(run){
 				Socket cliente = server.accept();
+				listaClientes.add(cliente);
 				System.out.println("Conexao estabelecida...");
 				new TrataRequest(cliente).start();
 			}
