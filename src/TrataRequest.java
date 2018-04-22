@@ -2,7 +2,7 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-
+//TRATA MENSAGENS ENVIADAS DOS CLIENTES E REENVIA
 public class TrataRequest extends Thread {
 
 	private Socket socket;
@@ -20,25 +20,34 @@ public class TrataRequest extends Thread {
 	public void run(){
 		
 			do {
+				/*
 				String linha = entrada.nextLine();
 				if(linha!=null&&!linha.isEmpty()) {
 					String[] fields = linha.split(";");
 					String user = fields[0];
 					String msg = fields[1];
-					System.out.println("mensagem deve ser exibida aqui");
-
-					Servidor.listaClientes.forEach(saidaDaLista->{
-						PrintWriter saidaExtraidaDaLista = null;
-						try {
-							saidaExtraidaDaLista = new PrintWriter(saidaDaLista.getOutputStream());
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						saidaExtraidaDaLista.println("mensagem enviada a todos os clientes");
-					});
+					System.out.println("Servidor recebeu a mensagem: "+user+" "+msg);
 				}
-			}while(Servidor.run);//connected client list
-		
+				*/
+				
+				
+				
+				System.out.println("Servidor realizando broadcast");
+				
+				Servidor.listaClientes.forEach(saidaDaLista->{
+					PrintWriter saidaExtraidaDaLista = null;
+					try {
+						saidaExtraidaDaLista = new PrintWriter(saidaDaLista.getOutputStream());
+						saidaExtraidaDaLista.println("mensagem enviada a todos os clientes");
+					} catch (IOException e) {}
+				});
+				
+				
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {}
+				
+				
+			}while(true);//connected client list
 	}
 }

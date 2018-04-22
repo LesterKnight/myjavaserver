@@ -14,19 +14,27 @@ public class Cliente {
 		
 		
 		try {
+			
 			System.out.println("Digite seu nome: ");
 			username = teclado.nextLine();
 			socket = new Socket(ipServer, portServer);
 			System.out.println("Conectado...");
 			PrintWriter saida = new PrintWriter(socket.getOutputStream());
-			new ImprimeMsgs(socket).start();
+			new ImprimeMsgs(socket).start();//INICIALIZA A THREAD QUE FAZ OUTPUT DAS MENSAGENS NO CLIENTE ATUAL
+			
+			
+
 			do {
 				saida.println(username+";"+teclado.nextLine());
 				saida.flush();
 				}while (true);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			
+			
+		} catch (IOException e) { e.printStackTrace();	}
+		
+		
+		
+		//bloco inutil
 		teclado.close();
 		
 		try {
@@ -34,6 +42,8 @@ public class Cliente {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 		
 		
 	}

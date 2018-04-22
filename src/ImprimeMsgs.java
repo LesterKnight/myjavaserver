@@ -1,7 +1,7 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
-
+//IMPRIME MENSAGEM NO CLIENTE
 public class ImprimeMsgs extends Thread {
 
 	private Socket socket;
@@ -17,6 +17,6 @@ public class ImprimeMsgs extends Thread {
 			if(linha!=null&&!linha.isEmpty()) 
 				System.out.println(linha);
 			
-		}while(true);//connected client list
+		}while(true);//ENQUANTO O CLIENTE ESTIVER CONECTADO
 	}
 }
