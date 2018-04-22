@@ -18,36 +18,21 @@ public class TrataRequest extends Thread {
 	}
 	
 	public void run(){
-		
-			do {
-				/*
-				String linha = entrada.nextLine();
-				if(linha!=null&&!linha.isEmpty()) {
-					String[] fields = linha.split(";");
-					String user = fields[0];
-					String msg = fields[1];
-					System.out.println("Servidor recebeu a mensagem: "+user+" "+msg);
-				}
-				*/
+		do {
+			
+			String linha = entrada.nextLine();
+			if(linha!=null&&!linha.isEmpty()) {
+				String[] fields = linha.split(";");
+				String user = fields[0];
+				String msg = fields[1];
+				System.out.println("Servidor recebeu uma mensagem de : "+user);
 				
-				
-				
-				System.out.println("Servidor realizando broadcast");
-				
+				//efetua broadcast da mensagem para todos os clientes
 				Servidor.listaClientes.forEach(saidaDaLista->{
-					PrintWriter saidaExtraidaDaLista = null;
-					try {
-						saidaExtraidaDaLista = new PrintWriter(saidaDaLista.getOutputStream());
-						saidaExtraidaDaLista.println("mensagem enviada a todos os clientes");
-					} catch (IOException e) {}
+					saidaDaLista.saida.println(user+" "+msg);
 				});
 				
-				
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {}
-				
-				
-			}while(true);//connected client list
+			}
+		}while(true);
 	}
 }
