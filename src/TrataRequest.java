@@ -7,12 +7,11 @@ public class TrataRequest extends Thread {
 
 	private Socket socket;
 	private Scanner entrada;
-	private PrintWriter saida;
 	
 	TrataRequest(Socket socket) throws IOException{
 		this.socket = socket;
 		this.entrada = new Scanner(this.socket.getInputStream());
-		this.saida = new PrintWriter(this.socket.getOutputStream());
+		listaClientes.add(new PrintWriter(this.socket.getOutputStream()));
 		
 		
 	}
@@ -26,11 +25,12 @@ public class TrataRequest extends Thread {
 				String user = fields[0];
 				String msg = fields[1];
 				System.out.println("Servidor recebeu uma mensagem de : "+user);
-				
+				/*
 				//efetua broadcast da mensagem para todos os clientes
 				Servidor.listaClientes.forEach(saidaDaLista->{
 					saidaDaLista.saida.println(user+" "+msg);
 				});
+				*/
 				
 			}
 		}while(true);
