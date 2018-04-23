@@ -25,6 +25,7 @@ public class TrataRequest extends Thread {
 				String user = fields[0];
 				String msg = fields[1];
 				System.out.println("Servidor recebeu uma mensagem de : "+user);
+				
 				/*
 				//efetua broadcast da mensagem para todos os clientes
 				Servidor.listaClientes.forEach(saidaDaLista->{
@@ -34,7 +35,7 @@ public class TrataRequest extends Thread {
 				for(OutputStream c : Servidor.listaClientes) {
 					PrintWriter saida = new PrintWriter(c);
 					saida.println(user+" "+msg);
-					
+					saida.flush();
 				}
 				
 				
