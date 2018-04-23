@@ -11,7 +11,7 @@ public class TrataRequest extends Thread {
 	TrataRequest(Socket socket) throws IOException{
 		this.socket = socket;
 		this.entrada = new Scanner(this.socket.getInputStream());
-		listaClientes.add(new PrintWriter(this.socket.getOutputStream()));
+		Servidor.listaClientes.add(new PrintWriter(this.socket.getOutputStream()));
 		
 		
 	}

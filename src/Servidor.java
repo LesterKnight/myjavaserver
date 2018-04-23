@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Servidor {
 	public static boolean run = true;
-	public static ArrayList<TrataRequest> listaClientes = new ArrayList<>();
+	public static ArrayList<PrintWriter> listaClientes = new ArrayList<>();
 	public static void main(String[] args){
 		
 		ServerSocket server = null;
