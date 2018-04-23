@@ -31,7 +31,7 @@ public class TrataRequest extends Thread {
 					saidaDaLista.saida.println(user+" "+msg);
 				});
 				*/
-				for(PrintStream c : Servidor.listaClientes) {
+				for(OutputStream c : Servidor.listaClientes) {
 					PrintWriter saida = new PrintWriter(c);
 					saida.println(user+" "+msg);
 					
